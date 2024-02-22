@@ -1252,7 +1252,7 @@ app.registerExtension({
 
 		separator.style.margin = "20px 0";
 		separator.style.width = "100%";
-		menu.append(separator);
+		// menu.append(separator);
 
 		const managerButton = document.createElement("button");
 		managerButton.textContent = "Manager";
@@ -1261,7 +1261,7 @@ app.registerExtension({
 					setManagerInstance(new ManagerMenuDialog());
 				manager_instance.show();
 			}
-		menu.append(managerButton);
+		// menu.append(managerButton);
 
 
 		const shareButton = document.createElement("button");
@@ -1293,7 +1293,7 @@ app.registerExtension({
 		const shouldShowShareButton = share_option !== 'none';
 		shareButton.style.display = shouldShowShareButton ? "inline-block" : "none";
 
-		menu.append(shareButton);
+		// menu.append(shareButton);
 	},
 
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
@@ -1341,39 +1341,39 @@ app.registerExtension({
 				}, null);
 			}
 
-			if (isOutputNode(node)) {
-				const { potential_outputs } = getPotentialOutputsAndOutputNodes([this]);
-				const hasOutput = potential_outputs.length > 0;
+			// if (isOutputNode(node)) {
+			// 	const { potential_outputs } = getPotentialOutputsAndOutputNodes([this]);
+			// 	const hasOutput = potential_outputs.length > 0;
 
-				// Check if the previous menu option is `null`. If it's not,
-				// then we need to add a `null` as a separator.
-				if (options[options.length - 1] !== null) {
-					options.push(null);
-				}
+			// 	// Check if the previous menu option is `null`. If it's not,
+			// 	// then we need to add a `null` as a separator.
+			// 	if (options[options.length - 1] !== null) {
+			// 		options.push(null);
+			// 	}
 
-				options.push({
-					content: "🏞️ Share Output",
-					disabled: !hasOutput,
-					callback: (obj) => {
-						if (!ShareDialog.instance) {
-							ShareDialog.instance = new ShareDialog();
-						}
-						const shareButton = document.getElementById("shareButton");
-						if (shareButton) {
-							const currentNode = this;
-							if (!OpenArtShareDialog.instance) {
-								OpenArtShareDialog.instance = new OpenArtShareDialog();
-							}
-							OpenArtShareDialog.instance.selectedNodeId = currentNode.id;
-							if (!ShareDialog.instance) {
-								ShareDialog.instance = new ShareDialog(share_option);
-							}
-							ShareDialog.instance.selectedNodeId = currentNode.id;
-							shareButton.click();
-						}
-					}
-				}, null);
-			}
+			// 	options.push({
+			// 		content: "🏞️ Share Output",
+			// 		disabled: !hasOutput,
+			// 		callback: (obj) => {
+			// 			if (!ShareDialog.instance) {
+			// 				ShareDialog.instance = new ShareDialog();
+			// 			}
+			// 			const shareButton = document.getElementById("shareButton");
+			// 			if (shareButton) {
+			// 				const currentNode = this;
+			// 				if (!OpenArtShareDialog.instance) {
+			// 					OpenArtShareDialog.instance = new OpenArtShareDialog();
+			// 				}
+			// 				OpenArtShareDialog.instance.selectedNodeId = currentNode.id;
+			// 				if (!ShareDialog.instance) {
+			// 					ShareDialog.instance = new ShareDialog(share_option);
+			// 				}
+			// 				ShareDialog.instance.selectedNodeId = currentNode.id;
+			// 				shareButton.click();
+			// 			}
+			// 		}
+			// 	}, null);
+			// }
 		}
 	},
 });
